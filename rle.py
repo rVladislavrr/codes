@@ -93,8 +93,11 @@ if __name__ == "__main__":
     end_time = time.time() - start_time
     compressed_size = os.path.getsize(compressed_file_path)
     compression_ratio = original_size / compressed_size
-    efficiency = (1 - compressed_size / original_size) * 100
 
+    if compressed_size >= original_size:
+        efficiency = 0
+    else:
+        efficiency = (1 - compressed_size / original_size) * 100
     print(f"Исходный размер: {original_size} байт")
     print(f"Закодированный размер: {compressed_size} байт")
     print(f"Коэффициент сжатия: {compression_ratio:.2f}")
